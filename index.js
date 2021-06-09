@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const router = require('./router');
-const port = process.env.WS_PORT || 8080;
+const port = process.env.PORT || 8080;
 
 const corsConfig = {
   origin: process.env.WC_ORIGIN,
