@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.WS_PORT || 8080;
 
 const corsConfig = {
-  origin: process.env.WC_ORIGIN || '',
+  origin: process.env.WC_ORIGIN,
   credentials: true,
 };
 
