@@ -1,0 +1,25 @@
+{
+  "name": "Weaver-server",
+  "version": "1.0.0",
+  "description": "Server for Weaver Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ujwalka/Weaver-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ujwalka/Weaver-server/issues"
+  },
+  "homepage": "https://github.com/ujwalka/Weaver-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
