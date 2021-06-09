@@ -6,6 +6,16 @@ const User = require('./../models/user');
 
 const SECRET = process.env.WS_SECRET_KEY;
 
+const findAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).send(users);
+  } catch (error) {
+    console.log('error from get all', error);
+    res.status(404).end();
+  }
+};
+
 const create = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
@@ -28,4 +38,4 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { create };
+module.exports = { create, findAllUsers };
