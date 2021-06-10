@@ -38,4 +38,19 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { create, findAllUsers };
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    const validatedPass = await bcrypt.compare(password, user.password);
+    if (!validatedPass) throw new Error();
+    const accessToken = jwt.sign({ _id: user._id }, SECRET);
+    res.status(200).send({ accessToken });
+  } catch (error) {
+    res
+      .status(401)
+      .send({ error: '401', message: 'Username or password is incorrect' });
+  }
+};
+
+module.exports = { create, findAllUsers, login };
