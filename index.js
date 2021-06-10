@@ -7,7 +7,7 @@ const router = require('./router');
 const port = process.env.PORT || 8080;
 
 const corsConfig = {
-  origin: process.env.WC_ORIGIN,
+  origin: [process.env.WC_ORIGIN, 'http://localhost:3000/'],
   credentials: true,
 };
 
