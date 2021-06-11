@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect(
   process.env.WS_MONGODB_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   (err) => {
     if (err) {
       console.log(`Sorry, something went wrong! ${err}`);
