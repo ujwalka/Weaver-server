@@ -52,5 +52,14 @@ const login = async (req, res) => {
       .send({ error: '401', message: 'Username or password is incorrect' });
   }
 };
+const validateToken = async (req, res) => {
+  const { token } = req.body;
+  try {
+    const isTokenValid = jwt.verify(token, SECRET);
+    res.status(200).send({ isValid: true });
+  } catch (error) {
+    res.status(401).send({ error: '401', message: 'Token id invalid' });
+  }
+};
 
-module.exports = { create, findAllUsers, login };
+module.exports = { create, findAllUsers, login, validateToken };
