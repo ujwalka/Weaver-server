@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nest: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Nest',
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -52,6 +52,18 @@ const login = async (req, res) => {
       .send({ error: '401', message: 'Username or password is incorrect' });
   }
 };
+
+const findUser = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) throw new Error();
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: '404', message: 'User not found' });
+  }
+};
+
 const validateToken = async (req, res) => {
   const { token } = req.body;
   try {
@@ -62,4 +74,4 @@ const validateToken = async (req, res) => {
   }
 };
 
-module.exports = { create, findAllUsers, login, validateToken };
+module.exports = { create, findAllUsers, login, validateToken, findUser };
