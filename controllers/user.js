@@ -58,7 +58,7 @@ const findUser = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) throw new Error();
-    res.status(200).send(user);
+    res.status(200).send({ name: user.name, userId: user._id });
   } catch (error) {
     res.status(404).send({ error: '404', message: 'User not found' });
   }

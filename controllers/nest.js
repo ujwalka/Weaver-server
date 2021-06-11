@@ -1,6 +1,6 @@
 const Nest = require('../models/nest');
 const User = require('../models/user');
-
+// todo update nest
 const createNest = async (req, res) => {
   const { description, userId } = req.body;
   try {
