@@ -23,6 +23,16 @@ const getAllNests = async (req, res) => {
   }
 };
 
+const postNestNote = async (req, res) => {
+  const { nestId, note } = req.body;
+  try {
+    await Nest.findOneAndUpdate({ _id: nestId }, { $push: { notes: note } });
+    res.status(201).send();
+  } catch (error) {
+    res.status(400).send({ error, message: 'Could not post note' });
+  }
+};
+
 const deleteNest = async (req, res) => {
   const { nestId, userId } = req.body;
   try {
@@ -34,4 +44,4 @@ const deleteNest = async (req, res) => {
   }
 };
 
-module.exports = { createNest, deleteNest, getAllNests };
+module.exports = { createNest, deleteNest, getAllNests, postNestNote };

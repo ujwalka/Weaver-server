@@ -5,7 +5,12 @@ const {
   postNote,
   getAllArticles,
 } = require('./controllers/article');
-const { createNest, deleteNest, getAllNests } = require('./controllers/nest');
+const {
+  createNest,
+  deleteNest,
+  getAllNests,
+  postNestNote,
+} = require('./controllers/nest');
 const {
   create,
   findAllUsers,
@@ -29,6 +34,7 @@ router.get('/straw/:nestId', getAllArticles);
 router.post('/straw', createArticle);
 router.delete('/straw', deleteArticle);
 
+router.post('/nest/note', postNestNote);
 router.post('/straw/note', postNote);
 
 module.exports = router;
