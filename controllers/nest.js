@@ -26,10 +26,22 @@ const getAllNests = async (req, res) => {
 const postNestNote = async (req, res) => {
   const { nestId, note } = req.body;
   try {
-    await Nest.findOneAndUpdate({ _id: nestId }, { $push: { notes: note } });
-    res.status(201).send();
+    const updatedNest = await Nest.findOneAndUpdate(
+      { _id: nestId },
+      { $push: { notes: note } }
+    );
+    res.status(201).send(updatedNest);
   } catch (error) {
-    res.status(400).send({ error, message: 'Could not post note' });
+    res.status(400).send({ error, message: 'Could not post warble' });
+  }
+};
+const getAllNestNotes = async (req, res) => {
+  const { nestId } = req.params;
+  try {
+    const { notes } = await Nest.findOne({ _id: nestId });
+    res.status(201).send({ notes });
+  } catch (error) {
+    res.status(400).send({ error, message: 'Could not get warbles' });
   }
 };
 
@@ -44,4 +56,10 @@ const deleteNest = async (req, res) => {
   }
 };
 
-module.exports = { createNest, deleteNest, getAllNests, postNestNote };
+module.exports = {
+  createNest,
+  deleteNest,
+  getAllNests,
+  postNestNote,
+  getAllNestNotes,
+};

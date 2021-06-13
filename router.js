@@ -10,6 +10,7 @@ const {
   deleteNest,
   getAllNests,
   postNestNote,
+  getAllNestNotes,
 } = require('./controllers/nest');
 const {
   create,
@@ -37,4 +38,6 @@ router.delete('/straw', deleteArticle);
 router.post('/nest/note', postNestNote);
 router.post('/straw/note', postNote);
 
+// gets Warbles
+router.get('/notes/:nestId', getAllNestNotes);
 module.exports = router;
