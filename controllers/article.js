@@ -17,7 +17,7 @@ const createArticle = async (req, res) => {
   }
 };
 
-const postNote = async (req, res) => {
+const postStrawNote = async (req, res) => {
   const { articleId, note } = req.body;
   try {
     await Article.findOneAndUpdate(
@@ -29,7 +29,15 @@ const postNote = async (req, res) => {
     res.status(400).send({ error, message: 'Could not post note' });
   }
 };
-
+const getAllStrawNotes = async (req, res) => {
+  const { strawId } = req.params;
+  try {
+    const { notes } = await Article.findOne({ _id: strawId });
+    res.status(201).send({ notes });
+  } catch (error) {
+    res.status(400).send({ error, message: 'Could not get Chirps' });
+  }
+};
 const getAllArticles = async (req, res) => {
   const { nestId } = req.params;
   try {
@@ -56,4 +64,10 @@ const deleteArticle = async (req, res) => {
   }
 };
 
-module.exports = { createArticle, deleteArticle, postNote, getAllArticles };
+module.exports = {
+  createArticle,
+  deleteArticle,
+  postStrawNote,
+  getAllArticles,
+  getAllStrawNotes,
+};
