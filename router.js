@@ -2,7 +2,6 @@ const router = require('express').Router();
 const {
   deleteArticle,
   createArticle,
-  postNote,
   getAllArticles,
   getAllStrawNotes,
   postStrawNote,

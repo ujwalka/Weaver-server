@@ -44,7 +44,9 @@ const login = async (req, res) => {
     const user = await User.findOne({ email });
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
-    const accessToken = jwt.sign({ _id: user._id }, SECRET);
+    const accessToken = jwt.sign({ _id: user._id }, SECRET, {
+      expiresIn: '1h',
+    });
     res.status(200).send({ accessToken });
   } catch (error) {
     res
